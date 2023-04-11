@@ -37,7 +37,8 @@ class AuthenticatedSessionController extends Controller
         }else{
             $url = '/dashboard';
         }
-
+        // print_r($request->user()->role);
+        // print_r($url);
         // return redirect()->intended(RouteServiceProvider::HOME);
         return redirect()->intended($url);
     }

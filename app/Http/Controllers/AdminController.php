@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -51,6 +51,32 @@ class AdminController extends Controller
             $data['photo'] = $filename;
         }
         $data->save();
-        return redirect()->back();
+        //toster message
+        $notification = array(
+            'message' => 'admin data updated succesesfullly',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
+    public function AdminChangePassword(){
+        return view('admin.admin_change_password');
+    }
+    public function AdminUpdatePassword(Request $req){
+        $req->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+        //match the old passowrd
+        if (!Hash::check($req->old_password,Auth::user()->password)) {
+            return back()->with('error', "old password does not match");
+        }
+        //update new password
+        User::whereId(Auth::user()->id)->update([
+            'password' => Hash::make($req->new_password)
+        ]);
+        return back()->with('status','password changed succesfully');
+
     }
 }

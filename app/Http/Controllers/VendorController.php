@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class VendorController extends Controller
 {
@@ -24,5 +25,11 @@ class VendorController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/vendor/login');
+    }
+
+    public function VendorProfile(){
+        $id= Auth::user()->id;
+        $adminData = User::find($id);
+        return view('vendor.vendor_profile_view',compact('adminData'));
     }
 }

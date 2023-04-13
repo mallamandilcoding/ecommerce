@@ -29,7 +29,31 @@ class VendorController extends Controller
 
     public function VendorProfile(){
         $id= Auth::user()->id;
-        $adminData = User::find($id);
-        return view('vendor.vendor_profile_view',compact('adminData'));
+        $vendorData = User::find($id);
+        return view('vendor.vendor_profile_view',compact('vendorData'));
+    }
+
+    public function VendorProfileStore(Request $req){
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $data->name = $req->name;
+        $data->email = $req->email;
+        $data->phone = $req->phone;
+        $data->address = $req->address;
+        if ($req->file('photo')){
+            $file = $req->file('photo');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            //upload image to public folder
+            $file->move(public_path('upload/vendor_images'),$filename);
+            //save to db
+            $data['photo'] = $filename;
+        }
+        $data->save();
+        //toster message
+        $notification = array(
+            'message' => 'vendor data updated succesesfullly',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

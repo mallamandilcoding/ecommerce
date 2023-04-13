@@ -1,18 +1,18 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('vendor.vendor_dashboard')
+@section('vendor')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <div class="page-wrapper">
     <div class="page-content"> 
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Admin User Profile</div>
+            <div class="breadcrumb-title pe-3">Vendor User Profile</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Admin Profile</li>
+                        <li class="breadcrumb-item active" aria-current="page">Vendor Profile</li>
                     </ol>
                 </nav>
             </div>
@@ -26,11 +26,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ (!empty($adminData->photo))? url('upload/admin_images/'.$adminData->photo): asset('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                    <img src="{{ (!empty($vendorData->photo))? url('upload/vendor_images/'.$vendorData->photo): asset('upload/no_image.jpg') }}" alt="vendor" class="rounded-circle p-1 bg-primary" width="110">
                                     <div class="mt-3">
-                                        <h4>{{ $adminData->name}}</h4>
-                                        <p class="text-secondary mb-1">{{ $adminData->email}}</p>
-                                        <p class="text-muted font-size-sm">{{ $adminData->address}}</p>
+                                        <h4>{{ $vendorData->name}}</h4>
+                                        <p class="text-secondary mb-1">{{ $vendorData->email}}</p>
+                                        <p class="text-muted font-size-sm">{{ $vendorData->address}}</p>
                                         
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('vendor.profile.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                 
                                     <div class="row mb-3">
@@ -60,7 +60,7 @@
                                             <h6 class="mb-0">UserName</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="{{ $adminData->username}}" disabled />
+                                            <input type="text" class="form-control" value="{{ $vendorData->username}}" disabled />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -68,7 +68,7 @@
                                             <h6 class="mb-0">Full Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="name" class="form-control" value="{{ $adminData->name}}" />
+                                            <input type="text" name="name" class="form-control" value="{{ $vendorData->name}}" />
                                         </div>
                                     </div>
                                     
@@ -77,7 +77,7 @@
                                             <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="email" name="email" class="form-control" value="{{ $adminData->email}}" />
+                                            <input type="email" name="email" class="form-control" value="{{ $vendorData->email}}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -85,7 +85,7 @@
                                             <h6 class="mb-0">Phone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="phone" class="form-control" value="{{ $adminData->phone}}" />
+                                            <input type="text" name="phone" class="form-control" value="{{ $vendorData->phone}}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -93,7 +93,7 @@
                                             <h6 class="mb-0">Address</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="address" class="form-control" value="{{ $adminData->address}}" />
+                                            <input type="text" name="address" class="form-control" value="{{ $vendorData->address}}" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -101,7 +101,7 @@
                                             <h6 class="mb-0">Photo</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="photo" class="form-control" id="adminimage" />
+                                            <input type="file" name="photo" class="form-control" id="vendorimage" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -109,7 +109,7 @@
                                             <h6 class="mb-0"></h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <img id="showadminimage" src="{{ (!empty($adminData->photo))? url('upload/admin_images/'.$adminData->photo): asset('upload/no_image.jpg') }}" alt="Admin" style="width:100px; height:100px;">
+                                            <img id="showvendorimage" src="{{ (!empty($vendorData->photo))? url('upload/vendor_images/'.$vendorData->photo): asset('upload/no_image.jpg') }}" alt="vendor" style="width:100px; height:100px;">
 
                                         </div>
                                     </div>
@@ -133,11 +133,11 @@
 <script>
         $(document).ready(function(){
             // alert('mandil');
-            $('#adminimage').change(function(e){
+            $('#vendorimage').change(function(e){
                 // console.log('malla');
                 var reader = new FileReader();
                 reader.onload = function(e){
-                    $('#showadminimage').attr('src',e.target.result)
+                    $('#showvendorimage').attr('src',e.target.result)
                 }
                 reader.readAsDataURL(e.target.files['0']);
             });

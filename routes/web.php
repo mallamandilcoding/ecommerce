@@ -48,6 +48,8 @@ Route::middleware(['auth','role:vendor'])->group(function(){
     Route::get('/vendor/dashboard',[VendorController::class,'VendorDashboard'])->name('vendor.dashboard');
 });
 
+Route::get('/vendor/login',[VendorController::class,'VendorLogin']);
+
 
 
 

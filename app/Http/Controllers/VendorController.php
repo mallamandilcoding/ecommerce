@@ -40,6 +40,8 @@ class VendorController extends Controller
         $data->email = $req->email;
         $data->phone = $req->phone;
         $data->address = $req->address;
+        $data->vendor_join = $req->vendor_join;
+        $data->vendor_short_info = $req->vendorinfo;
         if ($req->file('photo')){
             $file = $req->file('photo');
             $filename = date('YmdHi').$file->getClientOriginalName();

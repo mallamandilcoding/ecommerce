@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Full Name</h6>
+                                            <h6 class="mb-0">Shop Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" name="name" class="form-control" value="{{ $vendorData->name}}" />
@@ -74,7 +74,7 @@
                                     
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Email</h6>
+                                            <h6 class="mb-0">Vendor Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="email" name="email" class="form-control" value="{{ $vendorData->email}}" />
@@ -82,18 +82,35 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Phone</h6>
+                                            <h6 class="mb-0">Vendor Phone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="phone" class="form-control" value="{{ $vendorData->phone}}" />
+                                            <input type="text" name="phone" class="form-control" value="{{ $vendorData->phone}}" placeholder="vendor phone" />
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Address</h6>
+                                            <h6 class="mb-0">Vendor Address</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="address" class="form-control" value="{{ $vendorData->address}}" />
+                                            <input type="text" name="address" class="form-control" value="{{ $vendorData->address}}" placeholder="vendor address" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Vendor Join Date</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="date" name="vendor_join" class="form-control" value="{{ $vendorData->vendor_join}}" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Vendor Info</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <textarea class="form-control" name="vendorinfo" id="vendorinfo" placeholder="Vendor Info" rows="3">{{ $vendorData->vendor_short_info}}</textarea>
+                                            
                                         </div>
                                     </div>
                                     <div class="row mb-3">

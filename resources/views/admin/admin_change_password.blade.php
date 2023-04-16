@@ -49,7 +49,7 @@
                                     </div> 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Old Password</h6>
+                                            <h6 class="mb-0">New Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror"  placeholder="New Password"/>

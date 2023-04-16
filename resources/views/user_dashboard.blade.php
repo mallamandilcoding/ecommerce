@@ -44,6 +44,9 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="mb-0">Hello {{ $userData->name }}</h3>
+                                            <br>
+                                            <img id="showuserimage" src="{{ (!empty($userData->photo))? url('upload/user_images/'.$userData->photo): asset('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+
                                         </div>
                                         <div class="card-body">
                                             <p>

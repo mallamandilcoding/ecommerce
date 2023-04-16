@@ -181,7 +181,8 @@
                                         </ul>
                                     </div>
                                 @else
-                                <a href="page-account.html"><span class="lable ml-0">mandil Account</span></a>
+                                <a href="{{ route('login') }}"><span class="lable ml-0">Login</span></a>
+                                <a href="{{ route('register') }}"><span class="lable ml-0">Register</span></a>
 
                                 @endauth
                                 

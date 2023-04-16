@@ -164,7 +164,8 @@
                                             <h5>Account Details</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" name="enq">
+                                            <form action="{{ route('user.profile.store') }}" method="post" enctype="multipart/form-data">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
                                                         <label>User Name <span class="required">*</span></label>

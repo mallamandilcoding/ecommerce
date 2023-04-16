@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,7 +38,7 @@ class UserController extends Controller
         $data->email = $req->email;
         $data->phone = $req->phone;
         $data->address = $req->address;
-        
+
         if ($req->file('photo')){
             $file = $req->file('photo');
             $filename = date('YmdHi').$file->getClientOriginalName();
@@ -53,5 +54,22 @@ class UserController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function UserUpdatePassword(Request $req){
+        $req->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+        //match the old passowrd
+        if (!Hash::check($req->old_password,Auth::user()->password)) {
+            return back()->with('error', "old password does not match");
+        }
+        //update new password
+        User::whereId(Auth::user()->id)->update([
+            'password' => Hash::make($req->new_password)
+        ]);
+        return back()->with('status','password changed succesfully');
+
     }
 }

@@ -70,6 +70,7 @@ Route::get('/vendor/login',[VendorController::class,'VendorLogin']);
 
 
 //for brands 
-Route::middleware(['auth'])->group(function () {
-    
+Route::middleware(['auth','role:admin'])->group(function () {
+    Route::get('/all/brand',[BrandController::class,'AllBrand'])->name('all.brand');
 });
+

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,9 @@ Route::middleware(['auth','role:vendor'])->group(function(){
 });
 
 Route::get('/vendor/login',[VendorController::class,'VendorLogin']);
+
+
+//for brands 
+Route::middleware(['auth'])->group(function () {
+    
+});
